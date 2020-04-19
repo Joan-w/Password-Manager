@@ -24,5 +24,5 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(self.new_credential.account_name,"Instagram")
         self.assertEqual(self.new_credential.password,"12345")
 
-if __name__ = "__main__"
-unittest.main()
+if __name__ == "__main__":
+    unittest.main()
