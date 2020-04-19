@@ -15,6 +15,13 @@ class TestCredentials(unittest.TestCase):
         '''
 
         self.new_credential = User("Instagram", "12345") #Create a new credential
+
+    def tearDown(self):
+        '''
+        tearDown method that does clean up after each test case has run.
+        '''
+
+        User.credentials_list = []        
         
     def test_init(self):
         '''
