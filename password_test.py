@@ -22,7 +22,7 @@ class TestCredentials(unittest.TestCase):
         '''
 
         User.credentials_list = []        
-        
+
     def test_init(self):
         '''
         test_init test case to test if the object is initialized properly
@@ -46,9 +46,20 @@ class TestCredentials(unittest.TestCase):
         '''
 
         self.new_credential.save_credential()
-        test_credential = User("Test","Twitter","2345") #new credential
+        test_credential = User("Test","2345") #new credential
         test_credential.save_credential()
         self.assertEqual(len(User.credentials_list),2)
+
+    def test_delete_credential(self):
+        '''
+        test_delet_credential to test if I can remove a credential from the credentials_list
+        '''
+        self.new_credential.save_credential()
+        test_credential = User("Test","3456") #new credential
+        test_credential.save_credential()
+
+        self.new_credential.delete_credential() #Deleting a credential object
+        self.assertEqual(len(User.credentials_list),1)
 
 if __name__ == "__main__":
     unittest.main()
