@@ -8,3 +8,9 @@ def create_credential(acc_name,acc_password):
 
     new_credential = User(acc_name,acc_password)
     return new_credential
+
+def save_credentials(credential):
+    '''
+    Function to save a credential
+    '''
+    credential.save_credential()
