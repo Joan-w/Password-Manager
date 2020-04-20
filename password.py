@@ -29,6 +29,21 @@ class User:
         User.credential_list.remove(self)
 
     @classmethod
+    def credential_exist(cls,account_name):
+        '''
+        Method that checks if a credential exixst from the credential_list
+        Args:
+            account_name: Account name to search if it exists
+        Returns:
+            Boolean: True or false depending if the credential exists
+        '''
+        for credential in cls.credential_list:
+            if credential.account_name == account_name:
+                return True
+            
+        return False
+
+    @classmethod
     def display_credentials(cls):
         '''
         method that returns the credentials list
