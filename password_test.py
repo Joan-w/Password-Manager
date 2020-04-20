@@ -1,5 +1,5 @@
 import unittest #Importing the unittest module
-# import pyperclip
+import pyperclip
 from password import User #Importing the User class
 
 class TestCredentials(unittest.TestCase):
@@ -22,7 +22,7 @@ class TestCredentials(unittest.TestCase):
         tearDown method that does clean up after each test case has run.
         '''
 
-        User.credentials_list = []        
+        User.credential_list = []        
 
     def test_init(self):
         '''
@@ -30,7 +30,7 @@ class TestCredentials(unittest.TestCase):
         '''
 
         self.assertEqual(self.new_credential.account_name,"Instagram")
-        self.assertEqual(self.new_credential.password,"12345")
+        self.assertEqual(self.new_credential.account_password,"12345")
 
     def test_save_credential(self):
         '''
@@ -38,36 +38,36 @@ class TestCredentials(unittest.TestCase):
         '''
 
         self.new_credential.save_credential() #saving the new credential
-        self.assertEqual(len(User.credentials_list),1)
+        self.assertEqual(len(User.credential_list),1)
 
     def test_save_multiple_credential(self):
         '''
         test_save_multiple_credential to check if I can save multiple credential
-        objects to the credentials_list
+        objects to the credential_list
         '''
 
         self.new_credential.save_credential()
         test_credential = User("Test","2345") #new credential
         test_credential.save_credential()
-        self.assertEqual(len(User.credentials_list),2)
+        self.assertEqual(len(User.credential_list),2)
 
     def test_delete_credential(self):
         '''
-        test_delet_credential to test if I can remove a credential from the credentials_list
+        test_delet_credential to test if I can remove a credential from the credential_list
         '''
         self.new_credential.save_credential()
         test_credential = User("Test","3456") #new credential
         test_credential.save_credential()
 
         self.new_credential.delete_credential() #Deleting a credential object
-        self.assertEqual(len(User.credentials_list),1)
+        self.assertEqual(len(User.credential_list),1)
 
     def test_display_all_credentials(self):
         '''
         method that returns a list of all credentials saved
         '''
 
-        self.assertEqual(User.display_credentials(),User.credentials_list)
+        self.assertEqual(User.display_credentials(),User.credential_list)
 
     def test_find_credential_by_account_name(self):
         '''
@@ -78,19 +78,19 @@ class TestCredentials(unittest.TestCase):
         test_credential = User("Facebook", "4567") #new credential
         test_credential.save_credential()
 
-        found_credential = User.find_by_account_name("4567")
+        found_credential = User.find_by_account_name("Facebook")
 
-        self.assertEqual(found_credential.password,test_credential.password)
+        self.assertEqual(found_credential.account_name,test_credential.account_name)
 
-    # def test_copy_password(self):
-    #     '''
-    #     Test to confirm that we are copying the password from a credential
-    #     '''
+    def test_copy_password(self):
+        '''
+        Test to confirm that we are copying the password from a credential
+        '''
 
-    #     self.new_credential.save_credential()
-    #     User.copy_password("12345")
+        self.new_credential.save_credential()
+        User.copy_password("4567")
 
-    #     self.assertEqual(self.new_credential.password,pyperclip.paster())
+        self.assertEqual(self.new_credential.account_password,pyperclip.paste())
 
 if __name__ == "__main__":
     unittest.main()
