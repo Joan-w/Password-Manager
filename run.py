@@ -47,29 +47,8 @@ def main():
     print("Enter your name....")
     user_name = input()
     print("Enter password:")
-    
-    # while True:
-    print("Use these short password codes: gp - if you want your password to be generated for you, wp - if you want to write your own password")
-
-    password_code = input.().lower()
-
-    if password_code == 'gp':
-        print("New password:")
-        pw = str()
-        characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQESTUVWXYZ0123456789"
-        for i in range(8,10):
-            pa = pw + random.choice(characters)
-            print(f"Your Password-Manager Account password is {pw}")
-    
-    elif password_code == 'wp':
-        print("New password:")
-        new_password = input()
-        print(f"Your Password-Manager Account password is {new_password}")
-
-    else:
-        print("I really didn't get that please use the short codes")
-
-    print(f"Hello {user_name}. What would you like to do?")
+    user_password = input()
+    print(f"Hello {user_name}. You've successfully logged in into your Password Manager Account. What would you like to do?")
 
     while True:
         print("Use these short codes: cc - create new credential, dc - display credential, fc - find credential, ex -exit the credential list")
@@ -86,15 +65,17 @@ def main():
             print("Enter password ...")
             print("Use these short password codes: gp - if you want your password to be generated for you, wp - if you want to write your own password")
 
-            password_code = input.().lower()
+            password_code = input().lower()
 
             if password_code == 'gp':
-                print("New password:")
-                pw = str()
-                characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQESTUVWXYZ0123456789"
-                for i in range(8,10):
-                    pa = pw + random.choice(characters)
-                    print(f"Your {a_name} account password is {pw}")
+                print("Generating new password......")
+                # new_password = random.randint(0,10)
+                new_password = str()
+                characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+                for i in range(1,8):
+                    new_password = new_password + random.choice(characters)
+                    print(f"Your new password is {new_password}")
+                    print(f"Your {a_name} account password is {new_password}")
             
             elif password_code == 'wp':
                 print("New password:")
@@ -104,9 +85,9 @@ def main():
             else:
                 print("I really didn't get that please use the short codes")
 
-            print(f"Hello {user_name}. What would you like to do?")
+            # print(f"Hello {user_name}. What would you like to do?")
 
-            save_credentials(create_credential(a_name,pw)) #create and save a new credential
+            save_credentials(create_credential(a_name,new_password)) #create and save a new credential
             print('\n')
             print(f"New credential {a_name} created.")
             print('\n')
