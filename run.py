@@ -27,3 +27,8 @@ def find_credential(account_name):
     '''
     return User.find_by_account_name(account_name)
 
+def display_credentials():
+    '''
+    Function that returns all the saved credentials
+    '''
+    return User.display_credentials()
