@@ -62,6 +62,19 @@ class TestCredentials(unittest.TestCase):
         self.new_credential.delete_credential() #Deleting a credential object
         self.assertEqual(len(User.credential_list),1)
 
+    def test_credential_exists(self):
+        '''
+        test to check if we can return a boolean if we cannot find the contact
+        '''
+
+        self.new_credential.save_credential()
+        test_credential = User("LinkedIn" "0987") #new credential
+        test_credential.save_credential()
+
+        credential_exists = User.credential_exist("0987")
+
+        self.assertTrue(credential_exists)
+
     def test_display_all_credentials(self):
         '''
         method that returns a list of all credentials saved
