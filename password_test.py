@@ -1,4 +1,5 @@
 import unittest #Importing the unittest module
+# import pyperclip
 from password import User #Importing the User class
 
 class TestCredentials(unittest.TestCase):
@@ -67,6 +68,29 @@ class TestCredentials(unittest.TestCase):
         '''
 
         self.assertEqual(User.display_credentials(),User.credentials_list)
+
+    def test_find_credential_by_account_name(self):
+        '''
+        Test to check if we can find a credential by the account_name and display information
+        '''
+
+        self.new_credential.save_credential()
+        test_credential = User("Facebook", "4567") #new credential
+        test_credential.save_credential()
+
+        found_credential = User.find_by_account_name("4567")
+
+        self.assertEqual(found_credential.password,test_credential.password)
+
+    # def test_copy_password(self):
+    #     '''
+    #     Test to confirm that we are copying the password from a credential
+    #     '''
+
+    #     self.new_credential.save_credential()
+    #     User.copy_password("12345")
+
+    #     self.assertEqual(self.new_credential.password,pyperclip.paster())
 
 if __name__ == "__main__":
     unittest.main()
