@@ -143,3 +143,6 @@ def main():
 
         else:
             print("Sorry I didn't get that. Kindly use the short codes if you want to manage you passwords. Thank you")
+
+if __name__ == '__main__':
+    main()
