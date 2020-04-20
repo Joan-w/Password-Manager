@@ -28,6 +28,12 @@ def find_credential(account_name):
     '''
     return User.find_by_account_name(account_name)
 
+def check_existing_credentials(account_name):
+    '''
+    Function that checks if a credential exists with that account name and return a Boolean
+    '''
+    return User.credential_exist(account_name)
+
 def display_credentials():
     '''
     Function that returns all the saved credentials
@@ -51,7 +57,7 @@ def main():
     print(f"Hello {user_name}. You've successfully logged in into your Password Manager Account. What would you like to do?")
 
     while True:
-        print("Use these short codes: cc - create new credential, dc - display credential, fc - find credential, ex -exit the credential list")
+        print("Use these short codes: cc - create new credential, dc - display credential, fc - find credential, delc - to delete a credential, ex -exit the credential list")
 
         short_code = input().lower()
 
@@ -109,14 +115,27 @@ def main():
         elif short_code == 'fc':
             print("Enter the account name you want to search for")
 
-            search_credential = input()
+            search_account_name = input()
             if check_existing_credentials(search_credential):
+                search_credential = find_credential(search_account_name)
                 print(f"Account name - {search_credential.account_name}")
                 print('-'*20)
                 print(f"Account password - {search_credential.account_password}")
 
             else:
                 print("That credential seems not to exist")
+
+        elif short_code == 'delc':
+            print("Enter the account name of the credential you wish to delete")
+
+            credential_delete = input()
+            if del_credential(credential):
+                print(f"You have successfully deleted {credential.account_name} of password {credential.account_password}")
+                print('\n')
+
+            else:
+                print('\n')
+                print("You don't seem to have any credential with that account name")                
 
         elif short_code == 'ex':
             print("Byeee ........")
