@@ -32,3 +32,9 @@ def display_credentials():
     Function that returns all the saved credentials
     '''
     return User.display_credentials()
+
+def copy_credential_password(account_name):
+    '''
+    Function that copies a credential's password to the clipboard
+    '''
+    return User.copy_password(account_name)
