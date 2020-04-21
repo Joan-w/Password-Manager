@@ -23,10 +23,16 @@ class User:
 
     def delete_credential(self):
         '''
-        delete_credential method deletes credentials from the crdentials_list
+        delete_credential method deletes credentials from the credentials_list
         '''
 
         User.credential_list.remove(self)
+
+    # def delete_credential(self):
+    #     '''
+    #     This function removea a credential from the saved list
+    #     '''
+    #     User.credential_list.remove(self)
 
     @classmethod
     def credential_exist(cls,account_name):
@@ -64,7 +70,7 @@ class User:
             if credential.account_name == account_name:
                 return credential
 
-    @classmethod
-    def copy_password(cls,account_name):
-        password_found = User.find_by_account_name(account_name)
-        pyperclip.copy(password_found.account_password)
+    # @classmethod
+    # def copy_password(cls,account_name):
+    #     password_found = User.find_by_account_name(account_name)
+    #     pyperclip.copy(password_found.account_password)

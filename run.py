@@ -16,11 +16,17 @@ def save_credentials(credential):
     '''
     credential.save_credential()
 
-def del_credential(credential):
+# def del_credential(credential):
+#     '''
+#     Function to delete a credential
+#     '''
+#     credential.delete_credetial()
+
+def del_credentials(credential):
     '''
-    Function to delete a credential
+    Delete a credential from a specific account name
     '''
-    credential.delete_credetial()
+    credential.delete_credential()
 
 def find_credential(account_name):
     '''
@@ -116,7 +122,7 @@ def main():
             print("Enter the account name you want to search for")
 
             search_account_name = input()
-            if check_existing_credentials(search_credential):
+            if check_existing_credentials(search_account_name):
                 search_credential = find_credential(search_account_name)
                 print(f"Account name - {search_credential.account_name}")
                 print('-'*20)
@@ -127,16 +133,14 @@ def main():
 
         elif short_code == 'delc':
             print("Enter the account name of the credential you wish to delete")
-
-            credential_delete = input()
-            if del_credential(credential):
-                print(f"You have successfully deleted {credential.account_name} of password {credential.account_password}")
-                print('\n')
+            credential_account_name = input()
+            if check_existing_credentials(credential_account_name):
+            del_credentials(credential_account_name)
+            print(f"You've successfully deleted {credential_account_name} credential.")
 
             else:
-                print('\n')
-                print("You don't seem to have any credential with that account name")                
-
+                print("That credential seems not to exist")
+            
         elif short_code == 'ex':
             print("Byeee ........")
             break

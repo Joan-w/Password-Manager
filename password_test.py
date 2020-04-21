@@ -53,8 +53,14 @@ class TestCredentials(unittest.TestCase):
 
     def test_delete_credential(self):
         '''
-        test_delet_credential to test if I can remove a credential from the credential_list
+        test_delete to test if I can remove a credential from the credential_list
         '''
+        # self.new_credential.save_credential()
+        # new_credential = User("Linkedin", "3333")
+        # new_credential.save_credential()
+        # User.delete_credential("Linkedin")
+        # self.assertEqual(len(User.credential_list),1)
+
         self.new_credential.save_credential()
         test_credential = User("Test","3456") #new credential
         test_credential.save_credential()
@@ -64,15 +70,15 @@ class TestCredentials(unittest.TestCase):
 
     def test_credential_exists(self):
         '''
-        test to check if we can return a boolean if we cannot find the contact
+        test to check if we can return a boolean if we cannot find the credential.
         '''
 
         self.new_credential.save_credential()
-        test_credential = User("LinkedIn" "0987") #new credential
+        test_credential = User("LinkedIn", "0987") #new credential
         test_credential.save_credential()
 
-        credential_exists = User.credential_exist("0987")
-
+        credential_exists = User.credential_exist("LinkedIn")
+        
         self.assertTrue(credential_exists)
 
     def test_display_all_credentials(self):
@@ -95,15 +101,15 @@ class TestCredentials(unittest.TestCase):
 
         self.assertEqual(found_credential.account_name,test_credential.account_name)
 
-    def test_copy_password(self):
-        '''
-        Test to confirm that we are copying the password from a credential
-        '''
+    # def test_copy_password(self):
+    #     '''
+    #     Test to confirm that we are copying the password from a credential
+    #     '''
 
-        self.new_credential.save_credential()
-        User.copy_password("4567")
+    #     self.new_credential.save_credential()
+    #     User.copy_password("4567")
 
-        self.assertEqual(self.new_credential.account_password,pyperclip.paste())
+    #     self.assertEqual(self.new_credential.account_password,pyperclip.paste())
 
 if __name__ == "__main__":
     unittest.main()
