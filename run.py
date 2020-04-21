@@ -55,9 +55,11 @@ def copy_credential_password(account_name):
 
 def main():
     print("Hello Welcome to your Password-Manager Application.")
-    print("Time to create your account.")
-    print("Enter your name....")
+    print("Log in into your account.")
+    print("Enter your user name....")
     user_name = input()
+    print("Enter your gmail")
+    email = input().lower()
     print("Enter password:")
     user_password = input()
     print(f"Hello {user_name}. You've successfully logged in into your Password Manager Account. What would you like to do?")
@@ -101,7 +103,7 @@ def main():
 
             save_credentials(create_credential(a_name,new_password)) #create and save a new credential
             print('\n')
-            print(f"New credential {a_name} created.")
+            print(f"New credential {a_name} of password - {new_password} created.")
             print('\n')
 
         elif short_code == 'dc':
@@ -124,9 +126,9 @@ def main():
             search_account_name = input()
             if check_existing_credentials(search_account_name):
                 search_credential = find_credential(search_account_name)
-                print(f"Account name - {search_credential.account_name}")
+                print(f"Account name -> {search_credential.account_name}")
                 print('-'*20)
-                print(f"Account password - {search_credential.account_password}")
+                print(f"Account password -> {search_credential.account_password}")
 
             else:
                 print("That credential seems not to exist")
@@ -135,8 +137,8 @@ def main():
             print("Enter the account name of the credential you wish to delete")
             credential_account_name = input()
             if check_existing_credentials(credential_account_name):
-            del_credentials(credential_account_name)
-            print(f"You've successfully deleted {credential_account_name} credential.")
+                del_credentials(credential_account_name)
+                print(f"You've successfully deleted {credential_account_name} credential.")
 
             else:
                 print("That credential seems not to exist")
